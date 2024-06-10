@@ -73,3 +73,7 @@ crashlytics-build.properties
 /VR-Simulator/Library
 /VR-Simulator/Temp
 /VR-Simulator/Temp
+/VR-Simulator/Temp
+/VR-Simulator/Logs
+*.log
+/VR-Simulator/Logs
