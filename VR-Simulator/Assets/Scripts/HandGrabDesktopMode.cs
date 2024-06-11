@@ -7,49 +7,44 @@ public class HandGrabDesktopMode : MonoBehaviour
 {
     [SerializeField] Animator leftHandAnim;
     [SerializeField] Animator rightHandAnim;
+    [SerializeField] float AnimSpeed;
 
     string actionType = "Grip";
-
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
         if (Input.GetKey(KeyCode.J))
         {
-            if (leftHandAnim.GetFloat(actionType) == 1)
-            {
-                leftHandAnim.SetFloat(actionType, 0);
-            }
-
-            else
-            {
-                leftHandAnim.SetFloat(actionType, 1);
-            }
+            handAction(leftHandAnim);
         }
 
         else {
-            if (leftHandAnim.GetFloat(actionType) > 0)
-            {
-                leftHandAnim.SetFloat(actionType, leftHandAnim.GetFloat(actionType)-1);
-            }
+            handRelease(leftHandAnim);
         }
-
 
         if (Input.GetKey(KeyCode.K))
         {
-            if (rightHandAnim.GetFloat(actionType) == 1)
-            {
-                rightHandAnim.SetFloat(actionType, 0);
-            }
-
-            else
-            {
-                rightHandAnim.SetFloat(actionType, 1);
-            }
+            handAction(rightHandAnim);
         }
 
+        else {
+            handRelease(rightHandAnim);
+        }
+    }
+
+    void handAction( Animator handType)
+    {
+        if (handType.GetFloat(actionType) < 1)
+        {
+            handType.SetFloat(actionType, handType.GetFloat(actionType) + AnimSpeed * Time.deltaTime);
+        }
+    }
+
+    void handRelease(Animator handType)
+    {
+        if (handType.GetFloat(actionType) > 0)
+        {
+            handType.SetFloat(actionType, handType.GetFloat(actionType) - AnimSpeed * Time.deltaTime);
+        }
     }
 }
