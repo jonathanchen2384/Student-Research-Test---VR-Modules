@@ -5,13 +5,12 @@ using UnityEngine.XR.Management;
 
 public class VRDetector : MonoBehaviour
 {
-    [SerializeField] bool desktopMode;
-    [SerializeField] GameObject desktopObj;
-    [SerializeField] GameObject vrObj;
+    [SerializeField] bool SimulatorMode;
+    [SerializeField] GameObject simulatorObj;
 
     void Start()
     {
-        if (!desktopMode)
+        if (!SimulatorMode)
         {
             var xrSettings = XRGeneralSettings.Instance;
 
@@ -54,7 +53,6 @@ public class VRDetector : MonoBehaviour
 
     void startInVR( bool StartingVR)
     {
-        desktopObj.SetActive(!StartingVR);
-        vrObj.SetActive(StartingVR);
+        simulatorObj.SetActive(!StartingVR);
     }
 }
