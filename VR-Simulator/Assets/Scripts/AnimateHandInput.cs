@@ -10,6 +10,8 @@ public class AnimateHandInput : MonoBehaviour
     public InputActionProperty pinchAction;
     public InputActionProperty grabAction;
 
+    // animate grip and trigger hand animations with respect to controller inputs
+    // animation is smoother with real headsets over simulated XR
     void Update()
     {
         HandAnim.SetFloat("Trigger", pinchAction.action.ReadValue<float>());

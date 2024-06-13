@@ -6,18 +6,31 @@ using UnityEngine.InputSystem;
 
 public class ControllerAction : MonoBehaviour
 {
+    /*
+     * 
+     *  This is a Flexible script for the controller to
+     *  Perform actions and call out external functions
+     *  based on the user's pinch and grab inputs.
+     *  
+     *  More inputs may be added to improve the script
+     */
+
+    // inputs
     public InputActionProperty pinchAction;
     public InputActionProperty grabAction;
 
+    // flags to prevent recalls
     bool isPinchPressed;
     bool isGrabPressed;
 
+    // events
     public UnityEvent onPinchPressed, onPinchRelease;
     public UnityEvent onGrabPressed, onGrabRelease;
 
+
     void Update()
     {
-        // pinch
+        // pinch is pressed/released
 
         if (!isPinchPressed && pinchAction.action.ReadValue<float>() > 0.1f)
         {
@@ -29,7 +42,7 @@ public class ControllerAction : MonoBehaviour
             pinchReleased();
         }
 
-        // grab
+        // grab is pressed/released
 
         if (!isGrabPressed && grabAction.action.ReadValue<float>() > 0.1f)
         {
@@ -42,6 +55,8 @@ public class ControllerAction : MonoBehaviour
         }
     }
 
+    // Pressing the Pinch -> invoke action
+
     void pinchPressed()
     {
         isPinchPressed = true;
@@ -49,11 +64,15 @@ public class ControllerAction : MonoBehaviour
 
     }
 
+    // Releasing the Pinch -> invoke action
+
     void pinchReleased()
     {
         isPinchPressed = false;
         onPinchRelease.Invoke();
     }
+
+    // Pressing the grab -> invoke action
 
     void grabPressed()
     {
@@ -61,6 +80,8 @@ public class ControllerAction : MonoBehaviour
         onPinchPressed.Invoke();
 
     }
+
+    // Releasing the grab -> invoke action
 
     void grabReleased()
     {

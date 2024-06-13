@@ -8,6 +8,10 @@ public class OrientObject : MonoBehaviour
     private float accumulatedRotationY = 0f;
     private float accumulatedRotationZ = 0f;
 
+    /*
+     *      Rotate transform based on the affected rotation
+     */
+
     public void rotateObjectX(float rotX)
     {
         //Debug.Log("spinning X, speed: " + rotX);
